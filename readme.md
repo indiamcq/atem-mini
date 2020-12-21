@@ -3,7 +3,7 @@
 Here is a tabel that I use to generate Atem Macros with an XSLT.
 
 | Index | Name | Position | Type | Input | Size% | Switch | KeyCut |
-|====|===|===|===|===|===|===|
+|----|---|---|---|---|---|---|---|
 | 0 | Song Over | bc | Luma | 4 | 64.9994 | True | Black |
 | 1 | Overlay Off | tr |  |  | NaN | False |
 | 2 | Song Over dark | bc | Luma | 4 | 64.9994 | True | MediaPlayer1 |
