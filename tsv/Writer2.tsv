@@ -14,8 +14,8 @@ Index	Name	Position	Type	Input	Size%	Switch	KeyCut
 13	Top Right Cam1 35%	tr	DVE	1	35.0006	True
 14	Bot Left Cam1 35%	bl	DVE	1	35.0006	True
 15	Bot Right Cam1 35%	br		1	35.0006	True
-18	ZoomInCam1	mc	DVE	1	100	True
-19	ZoomInCam2	mc	DVE	2	100	True
+18	ZoomInCam1	mc	DVE	1	160	True
+19	ZoomInCam2	mc	DVE	2	160	True
 20	Song Over 65%	bc	Luma	4	65	True	Black
 21	Overlay Off					False	
 22	Song Over Cam4 65%	bc	Luma	4	65	True	MediaPlayer1
