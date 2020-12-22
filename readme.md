@@ -1,6 +1,6 @@
 # Some tools for the Atem Mini macro
 
-Here is a tabel that I use to generate Atem Macros with an XSLT.
+Here is a table that I use to generate Atem Macros with an XSLT.
 
 | Index | Name | Position | Type | Input | Size% | Switch | KeyCut |
 |----|---|---|---|---|---|---|---|
@@ -50,3 +50,11 @@ Here is a tabel that I use to generate Atem Macros with an XSLT.
 | 46 | Top Left Cam1 150% | tl | DVE | 1 | 150 | True |  |
 | 47 | Top Right Cam1 150% | tr | DVE | 1 | 150 | True |  |
 | 48 | Z Top Center Cam1 150% | tc | DVE | 1 | 150 | True |  |
+
+There is an XSLT that can extract the current data into a table like this. There is another XSLT that can generate the XML fromt hist table.
+
+## Limitations
+
+These conversion only currently handle Luma and DVE. 
+
+I use [Xrunner](https://github.com/SILAsiaPub/xrunner) to do the transformations. It has variables in the `project.txt` file that are made into the project.xslt that is included in the main XSLT.
