@@ -35,46 +35,50 @@
         </Profile>
     </xsl:template>
     <xsl:template match="row">
-<xsl:if test="string-length(name) != 0">
-
-
-        <xsl:element name="Macro">
-            <xsl:attribute name="index">
-                <xsl:value-of select="index"/>
-            </xsl:attribute>
-            <xsl:attribute name="name">
-                <xsl:value-of select="name"/>
-            </xsl:attribute>
-            <xsl:attribute name="description">
-                            <!-- nothing for now -->
-                        </xsl:attribute>
-            <xsl:if test="switch = 'True'">
-                <Op id="KeyType" mixEffectBlockIndex="0" keyIndex="0" type="{type}"/>
-                <Op id="KeyFillInput" mixEffectBlockIndex="0" keyIndex="0" input="{input}"/>
-                <xsl:if test="type = 'Luma'">
-                    <Op id="KeyCutInput" mixEffectBlockIndex="0" keyIndex="0" input="{keycut}"/>
-                    <Op id="LumaKeyPreMultiply" mixEffectBlockIndex="0" keyIndex="0" preMultiply="True"/>
-                </xsl:if>
-                <Op id="DVEKeyMaskEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
-                <xsl:if test="type = 'DVE'">
-                    <Op id="DVEKeyMaskEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
-                    <Op id="DVEKeyBorderEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
-                </xsl:if>
-                <Op id="DVEAndFlyKeyXPosition" mixEffectBlockIndex="0" keyIndex="0" xPosition="{f:xpos(size,position)}"/>
-                <Op id="DVEAndFlyKeyYPosition" mixEffectBlockIndex="0" keyIndex="0" yPosition="{f:ypos(size,position)}"/>
-                <Op id="DVEAndFlyKeyXSize" mixEffectBlockIndex="0" keyIndex="0" xSize="{format-number(number(size) * 0.01, '0.00')}"/>
-                <Op id="DVEAndFlyKeyYSize" mixEffectBlockIndex="0" keyIndex="0" ySize="{format-number(number(size) * 0.01, '0.00')}"/>
-                <Op id="MacroSleep" frames="1"/>
-            </xsl:if>
-            <Op id="KeyOnAir" mixEffectBlockIndex="0" keyIndex="0" onAir="{switch}"/>
-        </xsl:element>
-</xsl:if>
+        <xsl:if test="string-length(name) != 0">
+            <xsl:element name="Macro">
+                <xsl:attribute name="index">
+                    <xsl:value-of select="index"/>
+                </xsl:attribute>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="name"/>
+                </xsl:attribute>
+                <xsl:attribute name="description">
+                    <xsl:value-of select="desc"/>
+                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="type = 'DSK'">
+                        <!-- DSK Masks need more work. -->
+                        <Op id="DownstreamKeyFillInput" keyIndex="0" input="{f:keyvalue($inputkv,input)}"/>
+                        <Op id="DownstreamKeyCutInput" keyIndex="0" input="{f:keyvalue($inputkv,keycutMP)}"/>
+                        <Op id="MacroSleep" frames="1"/>
+                        <Op id="KeyOnAir" mixEffectBlockIndex="0" keyIndex="0" onAir="{switch}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="switch = 'True'">
+                            <Op id="KeyType" mixEffectBlockIndex="0" keyIndex="0" type="{type}"/>
+                            <Op id="KeyFillInput" mixEffectBlockIndex="0" keyIndex="0" input="{f:keyvalue($inputkv,input)}"/>
+                            <xsl:if test="type = 'Luma'">
+                                <Op id="KeyCutInput" mixEffectBlockIndex="0" keyIndex="0" input="{f:keyvalue($inputkv,keycutMP)}"/>
+                                <Op id="LumaKeyPreMultiply" mixEffectBlockIndex="0" keyIndex="0" preMultiply="True"/>
+                            </xsl:if>
+                            <Op id="DVEKeyMaskEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
+                            <xsl:if test="type = 'DVE'">
+                                <Op id="DVEKeyMaskEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
+                                <Op id="DVEKeyBorderEnable" mixEffectBlockIndex="0" keyIndex="0" enable="False"/>
+                            </xsl:if>
+                            <Op id="DVEAndFlyKeyXPosition" mixEffectBlockIndex="0" keyIndex="0" xPosition="{f:xpos(size,position)}"/>
+                            <Op id="DVEAndFlyKeyYPosition" mixEffectBlockIndex="0" keyIndex="0" yPosition="{f:ypos(size,position)}"/>
+                            <Op id="DVEAndFlyKeyXSize" mixEffectBlockIndex="0" keyIndex="0" xSize="{format-number(number(size) * 0.01, '0.00')}"/>
+                            <Op id="DVEAndFlyKeyYSize" mixEffectBlockIndex="0" keyIndex="0" ySize="{format-number(number(size) * 0.01, '0.00')}"/>
+                            <Op id="MacroSleep" frames="1"/>
+                        </xsl:if>
+                        <Op id="KeyOnAir" mixEffectBlockIndex="0" keyIndex="0" onAir="{switch}"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
-    <!-- <xsl:function name="f:value">
-        <xsl:param name="cell"/>
-        <xsl:param name="match"/>
-        <xsl:value-of select="$cell[number(f:position($head,$match))]"/>
-    </xsl:function> -->
     <xsl:function name="f:xpos">
         <xsl:param name="size"/>
         <xsl:param name="pos"/>
@@ -103,6 +107,9 @@
             </xsl:when>
             <xsl:when test="substring($pos,1,1) = 'b'">
                 <xsl:value-of select="format-number((number($yhalfsize) - number($yhalfscr))  * 0.0166667, '0.##')"/>
+            </xsl:when>
+            <xsl:when test="substring($pos,1,1) = 'm'">
+                <xsl:value-of select="0"/>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
