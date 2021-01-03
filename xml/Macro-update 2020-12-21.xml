@@ -497,6 +497,16 @@
             <Op id="MacroSleep" frames="1"/>
             <Op id="KeyOnAir" mixEffectBlockIndex="0" keyIndex="0" onAir="True"/>
         </Macro>
+        <Macro index="50" name="MP1 overlay DSK" description="">
+            <Op id="DownstreamKeyFillInput" keyIndex="0" input="MediaPlayer1"/>
+            <Op id="DownstreamKeyCutInput" keyIndex="0" input=""/>
+            <Op id="DownstreamKeyMaskLeft" keyIndex="0" left="0"/>
+            <Op id="DownstreamKeyMaskTop" keyIndex="0" top="0"/>
+            <Op id="DownstreamKeyMaskRight" keyIndex="0" right="0"/>
+            <Op id="DownstreamKeyMaskBottom" keyIndex="0" bottom="0"/>
+            <Op id="MacroSleep" frames="1"/>
+            <Op id="KeyOnAir" mixEffectBlockIndex="0" keyIndex="0" onAir="True"/>
+        </Macro>
         <Macro index="80" name="DS song over" description="">
             <Op id="DownstreamKeyMaskLeft" keyIndex="0" left="-16"/>
             <Op id="DownstreamKeyMaskTop" keyIndex="0" top="7.88"/>
