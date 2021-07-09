@@ -1,0 +1,13 @@
+Add Button to end both FB Live and Zoom.
+
+Companion button to end streams.
+
+Mute audio for FB and for Zoom
+    OBS Mic Realtek mute
+    Atem1 Mic1 off
+Atem1 Turn off FB stream 
+Quit Zoom meeting with AU3 script  
+    Alt Q
+    If small dialog press ENTER to Leave Meeting (Host re-assigned)
+    else send TAB then ENTER to Leave Meeting
+        VidOp needs to assign Host manually
