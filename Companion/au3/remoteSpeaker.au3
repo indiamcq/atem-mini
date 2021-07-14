@@ -11,5 +11,5 @@ WinSetState ( $sTitleM, "", @SW_MAXIMIZE )
 ;MouseClick ( "left", -35, 30 )
 ;MouseClick ( "left", -35, 30 )
 ; SEttongs to test at home
-MouseClick ( "left", 817, -1038 )
-MouseClick ( "left", 817, -962 )
+MouseClick ( "left", -33, 50 )
+MouseClick ( "left", -33, 160 )
