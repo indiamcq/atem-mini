@@ -1,5 +1,5 @@
 ;WinSetState ( "Google Docs", "", @SW_MAXIMIZE )
-$sTitle = "(18) Live Producer"
+$sTitle = "Live Producer"
 WinSetState ( $sTitle, "", @SW_MAXIMIZE )
 sleep ( 300 )
 MouseClick ( "left" , -1700, 965 )

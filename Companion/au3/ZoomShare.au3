@@ -6,6 +6,6 @@ $yPos = -1080
 WinActivate ( $sTitle )
 Sleep ( 300 )
 Send ( "!s" )
-Send ( "{right 1}" )
+Send ( "{tab 2}{right 1}" )
 Send ( "{enter}" )
 
