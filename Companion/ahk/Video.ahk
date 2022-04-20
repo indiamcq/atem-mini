@@ -19,18 +19,17 @@ SetTitleMatchMode, 2
 ; Start Atem
 run, "C:\Program Files (x86)\Blackmagic Design\Blackmagic ATEM Switchers\ATEM Software Control\ATEM Software Control.exe"
 Sleep, 2000
-;posx := calcPos(544,"x","c")
-;posy := calcPos(0,"y","c")
-;WinMove, Atem, , posx , posy, 1376, 1057
-return
+posx := calcPos(544,"x","c")
+posy := calcPos(0,"y","c")
+WinMove, Atem, , posx , posy, 1376, 1057
 
-^+e::
 ; Start Edge
 run, "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 Sleep, 2000
 posx := calcPos(0,"x","c")
 posy := calcPos(0,"y","c")
 WinMove, Microsoft Edge, , posx , posy, 660, 1040
+run, "C:\Users\mcquayi\Desktop\Video\OBS Studio (64bit).lnk"
 return
 
 ^+o::
@@ -47,19 +46,78 @@ return
 ^+z::
 SetTitleMatchMode, 2
 ; Start Zoom and enter username but not password
-run, "C:\Users\VideoOperator\AppData\Roaming\Zoom\bin\Zoom.exe"
+run, "C:\Users\mcquayi\AppData\Roaming\Zoom\bin\Zoom.exe"
 Sleep, 2000
 WinActivate , Zoom
 Send, {tab 2}{enter}
-Send, .org.au{tab};un
-send, xxxx;pw
+Send, mark@windsorroad.org.au{tab}
 return
 
 ^+f::
 ; Start Chrome and Facebook
-RunWait, fbsetup.au3
+SetTitleMatchMode, 2
+; Start facebook
+run, https://facebook.com
+WinWaitActive , Facebook
+Sleep, 4000
+; Position FB left screen and Maximize
+posx := calcPos(1,"x","l")
+posy := calcPos(1,"y","l")
+WinMove, Facebook, , posx , posy, 1920, 1080
+
+; Click on the Windsor road FB link
+;Testing numbers laptop screen: 100, 825
+posx := calcPos(100,"x","l")
+posy := calcPos(825,"y","l")
+MouseClick, left, posx , posy
+WinWaitActive , Windsor Road Baptist Church | Facebook
+Sleep, 2000
+
+; Click on the Live button 
+posx := calcPos(1170,"x","l")
+posy := calcPos(705,"y","l")
+MouseClick, left, posx , posy
+WinWaitActive , Live Producer
+Sleep, 6000
+
+; Click in the Title text box of the Live page
+posx := calcPos(50,"x","l")
+posy := calcPos(735,"y","l")
+MouseClick, left, posx , posy
+FormatTime, DateVar, , d MMMM yyyy
+send, WRBC Worship %DateVar%
+; Move to the subtitle text box
+send, {tab 2}
+send, Sunday Morning Worship
 return
 
+
+^+c::
+; test calPos function
+SetTitleMatchMode, 2
+posx := calcPos(100,"x","c")
+posy := calcPos(200,"y","c")
+;msgbox, %posx% "   - posy"
+WinMove, Notepad, , posx , posy
+return
+
+^+l::
+; test calPos function
+SetTitleMatchMode, 2
+posx := calcPos(100,"x","l")
+posy := calcPos(200,"y","l")
+;msgbox, %posx% "   - posy"
+WinMove, Notepad, , posx , posy
+return
+
+^+6::
+; test calPos function r
+SetTitleMatchMode, 2
+posx := calcPos(100,"x","r")
+posy := calcPos(200,"y","r")
+;msgbox, %posx% "   - posy"
+WinMove, Notepad, , posx , posy, 235 , 1040
+return
 
 ^+s::
 ; Open Chat Alt H, Participants Alt U, Open Share Alt s
@@ -95,6 +153,7 @@ sleep, 500
 send, {tab 2}
 send, {right}{enter} ; move to screen two
 
+
 return
 
 ^+q::
@@ -128,11 +187,6 @@ posx := calcPos(1880,"x","l")
 posy := calcPos(160,"y","l")
 MouseMove, posx , posy
 MouseClick, left, posx , posy
-return
-
-^+p::
-; Position Zoom Windows, chat, participants, Zoom Meeting
-RunWait, ZoomPos.au3
 return
 
 ^+m::
