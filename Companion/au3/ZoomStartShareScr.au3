@@ -19,11 +19,21 @@ WinWaitActive ( "Zoom Meeting" )
 Send ( "!u" )
 _winMonMove( $winp[1],$winp[2],$winp[3],$winp[4],$winp[5],$winp[6])
 
-WinActivate ( "Zoom Meeting" )
+$sTitle = "Zoom Meeting"
+$sharescreen = 3
+WinActivate ( $sTitle )
+WinWaitActive( $sTitle )
 Sleep ( 300 )
 Send ( "!s" )
-Send ( "{tab 2}{right 1}" )
-Send ( "{enter}" )
+
+$contitle = "Select a window or an application that you want to share"
+WinWaitActive( $contitle )
+Opt("WinTitleMatchMode", 2)
+$pos = WinGetPos( $contitle )
+$x = ($sharescreen * 250 ) -150
+$y = 150
+
+MouseClick("left", $pos[0] + $x, $pos[1] + $y, 2, 0)
 
 
 

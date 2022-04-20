@@ -11,3 +11,15 @@ Quit Zoom meeting with AU3 script
     If small dialog press ENTER to Leave Meeting (Host re-assigned)
     else send TAB then ENTER to Leave Meeting
         VidOp needs to assign Host manually
+        
+2022-04-20
+FB go live
+    Set Atem Pro audio off
+    Run au3 script to click Go Live button
+    
+End streams
+    Turn off all audio on Atem 2 and Atem 1 
+    Run au3 script to ckick Go Live button.
+    Exit screenshare with au3 script
+    Exit Zoom with au3 script
+    
