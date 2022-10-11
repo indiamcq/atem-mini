@@ -51,10 +51,10 @@ Here is a table that I use to generate Atem Macros with an XSLT.
 | 47 | Top Right Cam1 150% | tr | DVE | 1 | 150 | True |  |
 | 48 | Z Top Center Cam1 150% | tc | DVE | 1 | 150 | True |  |
 
-There is an XSLT that can extract the current data into a table like this. There is another XSLT that can generate the XML fromt hist table.
+There is an XSLT that can extract the current data into a table like this. There is another XSLT that can generate the XML from this table.
 
 ## Limitations
 
 These conversion only currently handle Luma and DVE. 
 
-I use [Xrunner](https://github.com/SILAsiaPub/xrunner) to do the transformations. It has variables in the `project.txt` file that are made into the project.xslt that is included in the main XSLT.
+I use [Xrunner](https://github.com/SILAsiaPub/xrunner) to control the transformations. It has variables in the `project.txt` file that are made into the project.xslt that is included in the main XSLT.
